@@ -1,0 +1,49 @@
+<div class='broadcast-page'>
+
+  <div *ngIf='!this.isCreatePressed'>
+    <div class='new-chat-banner'>
+      <button (click)='createNewChat()'>Create New Chat</button>
+    </div>
+  </div>
+  <div *ngIf='this.isClosed; else createNewGroup'>
+    <div class='broadcast-list'>
+      <div class='list-item' *ngFor='let broadcast of broadcastList' [routerLink]="['/chat-page', broadcast.id]">
+        <div class='item-content'>
+          <div class='name'>{{ broadcast.name }}</div>
+          <div class='name'>{{ broadcast.type }}</div>
+        </div>
+        <div class='date'>{{ broadcast.time }}</div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #createNewGroup>
+    <div class='new-chat-form'>
+      <h2>Create New Chat</h2>
+      <form (ngSubmit)='onSubmit(newChatForm)' #newChatForm='ngForm'>
+        <div class='form-group'>
+          <label for='chatName'>Chat Name:</label>
+          <input type='text' id='chatName' name='chatName' ngModel required>
+        </div>
+        <div class='form-group'>
+          <label>Add People:</label>
+          <div *ngFor='let user of users'>
+            <input type='checkbox' [value]='user.username' (change)='toggleSelection(user)'>
+            <label>{{ user.username }}</label>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label for='chatType'>Type of Chat:</label>
+          <select id='chatType' name='chatType' ngModel required>
+            <option value='private'>Private</option>
+            <option value='announcement'>Announcement</option>
+            <option value='group'>Group</option>
+          </select>
+        </div>
+        <button type='submit' [disabled]='!newChatForm.valid'
+                [ngClass]="{'save-button': newChatForm.valid, 'save-button-disabled': !newChatForm.valid}">Create Chat
+        </button>
+      </form>
+    </div>
+  </ng-template>
+</div>

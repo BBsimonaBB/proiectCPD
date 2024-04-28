@@ -1,0 +1,21 @@
+<div class="chat-container">
+  <div class="chat-name">
+    <p>{{ broadcastEntry.name }}</p>
+    <p>{{ broadcastEntry.type }}</p>
+    <span *ngFor="let user of broadcastEntry.users; let last = last">
+      {{ user.username }}{{ !last ? ', ' : '' }}
+    </span>
+  </div>
+  <div class="chat-messages">
+    <div *ngFor="let message of messages"
+         [ngClass]="{'message-mine': message.from === 'me', 'message-theirs': message.from === 'them'}">
+      <div class="message-content">{{ message.content }}</div>
+    </div>
+  </div>
+  <div
+    *ngIf="connectedUser === broadcastEntry.owner && broadcastEntry.type === 'announcement' || broadcastEntry.type === 'group' || broadcastEntry.type === 'private'"
+    class="chat-input">
+    <input type="text" [(ngModel)]="newMessage" placeholder="Type your message..." (keydown.enter)="sendMessage()">
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

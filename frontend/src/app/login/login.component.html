@@ -1,0 +1,16 @@
+<br><br>
+<h2>Login</h2>
+<form [formGroup]='loginForm' (ngSubmit)='onSubmit()'>
+  <div>
+    <label for='username'>Username:</label>
+    <input type='text' id='username' formControlName='username' required>
+  </div>
+  <div>
+    <label for='email'>Email:</label>
+    <input type='text' id='email' formControlName='email' required>
+  </div>
+  <div *ngIf='errorMessage' class='error-message'>{{ errorMessage }}</div>
+  <p>Complete form</p>
+  <button class='loginButton' mat-stroked-button color='primary' type='submit' [disabled]='!loginForm.valid'>Log in
+  </button>
+</form>
