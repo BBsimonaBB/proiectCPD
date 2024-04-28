@@ -1,0 +1,12 @@
+log out button
+    delete user from session storage
+
+username & email has to be unique
+
+back button
+    after selecting one broadcast it should go back to choosing a new one
+
+seeing all the boradcasts the user has a converstion with ?
+    instead of findAll - replace it with some filter to show only the active conversations
+
+send messages with kafka or rabbitMQ broker
