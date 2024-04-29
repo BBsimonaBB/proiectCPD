@@ -1,7 +1,7 @@
 log out button
     delete user from session storage
 
-username & email has to be unique
+username & email has to be unique (sunt deja unice, adica daca ai un emai sau un user care deja exista da eroare)
 
 back button
     after selecting one broadcast it should go back to choosing a new one
